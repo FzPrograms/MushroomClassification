@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container contact-form">
+        <div class="contact-image">
+            <img src="https://i.pinimg.com/originals/11/5d/0f/115d0ff8b17cf7e85dba534ebe0bb2dc.jpg" alt="jamur"/>
+            
+        </div>
+        <form action="{{ url_for('predict')}}" method="post">
+            <h3>Mushroom Classification</h3>
+           <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Bruises"><b>Is the mushroom bruised?</b></label>
+                        <select name="Bruises" class="form-control" required>
+                            <option value="" disabled selected>-- Select an option --</option>
+                            <option value="0">False</option>
+                            <option value="1">True</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Gill-spacing"><b>Is the gill spacing close or crowded?</b></label>
+                        <select name="Gill-spacing" class="form-control" required>
+                            <option value="" disabled selected>-- Select an option --</option>
+                            <option value="0">Close</option>
+                            <option value="1">Crowded</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Gill-size"><b>What is the size of the gill?</b></label>
+                        <select name="Gill-size" class="form-control" required>
+                            <option value="" disabled selected>-- Select an option --</option>
+                            <option value="0">Broad</option>
+                            <option value="1">Narrow</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Gill-color"><b>What color is the gill?</b></label>
+                        <select name="Gill-color" class="form-control" required>
+                            <option value="" disabled selected>-- Select an option --</option>
+                            <option value="0">Buff</option>
+                            <option value="1">Red</option>
+                            <option value="2">Gray</option>
+                            <option value="3">Chocolate</option>
+                            <option value="4">Black</option>
+                            <option value="5">Brown</option>
+                            <option value="6">Orange</option>
+                            <option value="7">Rink</option>
+                            <option value="8">Green</option>
+                            <option value="9">Purple</option>
+                            <option value="10">White</option>
+                            <option value="11">Yellow</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Stalk-root"><b>What type of stipe/stem root is it?</b></label>
+                        <select name="Stalk-root" class="form-control" required>
+                            <option value="" disabled selected>-- Select an option --</option>
+                            <option value="0">Missing</option>
+                            <option value="1">Bulbous</option>
+                            <option value="2">Club</option>
+                            <option value="3">Equal</option>
+                            <option value="4">Rooted</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Stalk-surface-above-ring"><b>What is the surface texture of the stipe/stem above the ring like?</b></label>
+                        <select name="Stalk-surface-above-ring" class="form-control" required>
+                            <option value="" disabled selected>-- Select an option --</option>
+                            <option value="0">Fibrous</option>
+                            <option value="1">Silky</option>
+                            <option value="2">Smooth</option>
+                            <option value="3">Scaly</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Stalk-surface-below-ring"><b>What is the surface texture of the stipe/stem below the ring like?</b></label>
+                        <select name="Stalk-surface-below-ring" class="form-control" required>
+                            <option value="" disabled selected>-- Select an option --</option>
+                            <option value="0">Fibrous</option>
+                            <option value="1">Silky</option>
+                            <option value="2">Smooth</option>
+                            <option value="3">Scaly</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Ring-type"><b>What is the type of the ring?</b></label>
+                        <select name="Ring-type" class="form-control" required>
+                            <option value="" disabled selected>-- Select an option --</option>
+                            <option value="0">Evanescent</option>
+                            <option value="1">Flaring</option>
+                            <option value="2">Large</option>
+                            <option value="3">None</option>
+                            <option value="4">Pendant</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Population"><b>What is the condition of the population??</b></label>
+                        <select name="Population" class="form-control" required>
+                            <option value="" disabled selected>-- Select an option --</option>
+                            <option value="0">Abundant</option>
+                            <option value="1">Clustered</option>
+                            <option value="2">Numerous</option>
+                            <option value="3">Scattered</option>
+                            <option value="4">Several</option>
+                            <option value="5">Solitary</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btnContact">Check Now!</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://www.shutterstock.com/image-vector/mushroom-anatomy-structure-parts-cap-600nw-2205522239.jpg"/>
+                    <h3>Edible/Poisonous?<br>
+                        {{ prediction_text }}
+                    </h3>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- "bruises", "gill-spacing", "gill-size", "gill-color", "stalk-root", "stalk-surface-above-ring", "stalk-surface-below-ring", "ring-type", "population"-->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+</html>
